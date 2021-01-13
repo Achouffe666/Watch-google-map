@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google maps API</title>
+</head>
+<body>
+    <h1 style = 'text-align:center; text-decoration: underline;'>Google maps API</h1>
+    <div id="map" style = 'height: 500px; width: 100%;border: solid 2px black;'></div>
+
+    <script>
+        // initialisation de la carte
+        function initMap(){
+            let options = {
+                zoom:12,
+                center: {lat:50.63272972099239,lng:5.585554400943214}
+            };
+            // declaration de la map dans le DOM
+            let map = new google.maps.Map(document.querySelector('#map'),options);
+            //declaration du Marker
+            let marker = new google.maps.Marker({
+                position: {lat:50.63272972099239,lng:5.585554400943214},
+                map:map,
+                icon:'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+            });
+            // boite de dialogue infos et Event listener sur le marker
+            let info = new google.maps.InfoWindow({
+                content:'Hello BeCode'
+            });
+            marker.addListener('click',()=>{info.open(map,marker);})
+        }
+    </script>
+
+//script d'import de l'API, remplacer la clef unique par votre propre clef=> key= VOTRE-CLEF &callback
+    <script defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXCNyoaVUg6PwMv_z1NXTrm2zqxskbiNM&callback=initMap">
+    </script>
+</body>
+</html>
+
+
